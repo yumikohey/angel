@@ -7,6 +7,14 @@ const {
     Image,
 } = React;
 
+const DropDown = require('react-native-dropdown');
+const {
+  Select,
+  Option,
+  OptionList,
+  updatePosition
+} = DropDown;
+
 const styles = React.StyleSheet.create({
     container: {
         paddingTop: 20,
@@ -89,6 +97,32 @@ const styles = React.StyleSheet.create({
 });
 
 class Product extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+          size: 'Small',
+          color: 'Black',
+        };
+    }
+
+    componentDidMount() {
+      updatePosition(this.refs['SELECT1']);
+      updatePosition(this.refs['OPTIONLIST']);
+    }
+
+    _getOptionList() {
+      return this.refs['OPTIONLIST'];
+    }
+
+    _size(size) {
+
+      this.setState({
+        ...this.state,
+        size: size,
+      });
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -108,13 +142,21 @@ class Product extends React.Component {
                             source={require('./img/mk_1.png')}/>
                     </View>
                     <View style={styles.detailRow}>
-                        <Text style={styles.buyButton}>
-                            CONFIRM
-                        </Text>
+                        <Select
+                          width={80}
+                          ref="SELECT1"
+                          optionListRef={this._getOptionList.bind(this)}
+                          defaultValue="Size ..."
+                          onSelect={this._size.bind(this)}>
+                          <Option>Small</Option>
+                          <Option>Medium</Option>
+                          <Option>Large</Option>
+                        </Select>
+                        <OptionList ref="OPTIONLIST"/>
                     </View>
                     <View style={styles.labelRow}>
                         <TouchableHighlight
-                            onPress={this.props.productPage}
+                            onPress={this.props.onAddStarted}
                             >
                             <Text style={styles.buyButton}>
                                 CONFIRM
