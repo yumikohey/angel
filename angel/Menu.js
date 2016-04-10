@@ -36,9 +36,12 @@ const styles = StyleSheet.create({
     top: 20,
   },
   item: {
-    fontSize: 14,
-    fontWeight: '300',
-    paddingTop: 5,
+    fontSize: 20,
+    fontWeight: '600',
+    paddingTop: 20,
+    marginLeft: 40,
+    marginRight: 40,
+    color: '#fff',
   },
 });
 
