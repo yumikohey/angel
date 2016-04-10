@@ -107,7 +107,9 @@ class TaskRow extends React.Component {
                     </Text>
                 </View>
                 <View style={styles.labelRow}>
-                    <TouchableHighlight>
+                    <TouchableHighlight
+                        onPress={this.props.productPage}
+                        >
                         <Text style={styles.buyButton}>
                             BUY
                         </Text>

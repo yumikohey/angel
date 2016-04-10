@@ -9,6 +9,7 @@ import TaskList from './angel/TaskList';
 import TaskForm from './angel/TaskForm';
 import Menu from './angel/Menu';
 import UploadSelfie from './angel/UploadSelfie';
+import Product from './angel/Product';
 
 const SideMenu = require('react-native-side-menu');
 const Icon = require('react-native-vector-icons/Ionicons');
@@ -53,6 +54,13 @@ class angel extends Component {
         this.setState({ todos: filteredTodos });
     }
 
+    productPage() {
+        console.log('click');
+        this.nav.push({
+          name: 'product',
+        });
+    }
+
     renderScene(route, nav) {
         switch (route.name) {
         case 'taskform':
@@ -66,12 +74,17 @@ class angel extends Component {
             return (
                 <UploadSelfie/>
             );
+        case 'product':
+            return (
+              <Product/>
+            );
         default:
             return (
                 <TaskList
                     onAddStarted={this.onAddStarted.bind(this)}
                     onDone={this.onDone.bind(this)}
                     todos={this.state.todos}
+                    productPage={this.productPage.bind(this)}
                 />
             );
         }

@@ -2,12 +2,9 @@ import React from 'react-native';
 
 const {
     View,
-    ListView,
     TouchableHighlight,
     Text,
 } = React;
-
-import TaskRow from './TaskRow';
 
 const styles = React.StyleSheet.create({
     container: {
@@ -41,38 +38,7 @@ const styles = React.StyleSheet.create({
     },
 });
 
-class TaskList extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-
-        const ds = new ListView.DataSource({
-            rowHasChanged: (r1, r2) => r1 !== r2,
-        });
-
-        this.state = {
-            dataSource: ds.cloneWithRows(props.todos),
-        };
-    }
-
-    componentWillReceiveProps(nextProps) {
-        const dataSource = this
-            .state
-            .dataSource
-            .cloneWithRows(nextProps.todos);
-
-        this.setState({ dataSource });
-    }
-
-    renderRow(todo) {
-        return (
-            <TaskRow
-                onDone={this.props.onDone}
-                todo={todo}
-                productPage={this.props.productPage}
-            />
-        );
-    }
-
+class Product extends React.Component {
     render() {
         return (
             <View style={styles.container}>
@@ -85,20 +51,9 @@ class TaskList extends React.Component {
                         Angel
                     </Text>
                 </TouchableHighlight>
-                <ListView
-                    dataSource={this.state.dataSource}
-                    renderRow={this.renderRow.bind(this)}
-                />
             </View>
         );
     }
 }
 
-TaskList.propTypes = {
-    onAddStarted: React.PropTypes.func.isRequired,
-    onDone: React.PropTypes.func.isRequired,
-    todos: React.PropTypes
-        .arrayOf(React.PropTypes.object).isRequired,
-};
-
-export default TaskList;
+export default Product;
