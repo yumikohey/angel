@@ -94,6 +94,9 @@ const styles = React.StyleSheet.create({
         marginRight: 20,
         height: 450,
     },
+    dropdown: {
+        marginTop: 10,
+    }
 });
 
 class Product extends React.Component {
@@ -142,8 +145,12 @@ class Product extends React.Component {
                             source={require('./img/mk_1.png')}/>
                     </View>
                     <View style={styles.detailRow}>
+                        <Text style={styles.buyButton}>
+                            $50.00
+                        </Text>
                         <Select
                           width={80}
+                          style={styles.dropdown}
                           ref="SELECT1"
                           optionListRef={this._getOptionList.bind(this)}
                           defaultValue="Size ..."

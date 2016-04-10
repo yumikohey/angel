@@ -101,7 +101,7 @@ class TaskRow extends React.Component {
                 <View style={styles.feed}>
                     <Image
                         style={styles.feedImg}
-                        source={require('./img/mk_1.png')}/>
+                        source={{uri:this.props.todo.url}}/>
                     <Text style={styles.label}>
                         {this.props.todo.task}
                     </Text>

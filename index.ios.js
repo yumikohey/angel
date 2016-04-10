@@ -21,10 +21,25 @@ class angel extends Component {
             todos: [
                 {
                     task: 'Learn React Native',
+                    url: "http://s24.postimg.org/m17pnn5hf/image.png"
                 },
                 {
                     task: 'Learn Redux',
+                    url: "http://s23.postimg.org/7xujipcbd/image.png"
                 },
+                {
+                    task: 'Learn React Native',
+                    url: "http://s24.postimg.org/pyuzd1sar/image.png"
+                },
+                {
+                    task: 'Learn Redux',
+                    url: "http://s24.postimg.org/g43u6tocj/image.png"
+                },
+                {
+                    task: 'Learn React Native',
+                    url: "http://s24.postimg.org/yxpn3tmkj/image.png"
+                },
+
             ],
             selectedTab: 'welcome',
         };
@@ -165,13 +180,9 @@ class angel extends Component {
                               selectedTab: 'more',
                           });
                     }}>
-                       <Navigator
-                           configureScene={this.configureScene}
-                           initialRoute={{ name: 'uploadselfie', index: 0 }}
-                           ref={((nav) => {
-                               this.nav = nav;
-                           })}
-                           renderScene={this.renderScene.bind(this)}
+                       <TaskForm
+                           onAdd={this.onAdd.bind(this)}
+                           onCancel={this.onCancel.bind(this)}
                        />
                   </Icon.TabBarItemIOS>
                 </TabBarIOS>
