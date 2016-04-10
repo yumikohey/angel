@@ -8,6 +8,7 @@ const {
 import TaskList from './angel/TaskList';
 import TaskForm from './angel/TaskForm';
 import Menu from './angel/Menu';
+import UploadSelfie from './angel/UploadSelfie';
 
 const SideMenu = require('react-native-side-menu');
 const Icon = require('react-native-vector-icons/Ionicons');
@@ -35,19 +36,16 @@ class angel extends Component {
     }
 
     onCancel() {
-        console.log('cancelled!');
         this.nav.pop();
     }
 
     onAdd(task) {
-        console.log('a task was added: ', task);
         this.state.todos.push({ task });
         this.setState({ todos: this.state.todos });
         this.nav.pop();
     }
 
     onDone(todo) {
-        console.log('todo was completed: ', todo.task);
         const filteredTodos =
             this.state.todos.filter((filterTodo) => {
                 return filterTodo !== todo;
@@ -63,6 +61,10 @@ class angel extends Component {
                     onAdd={this.onAdd.bind(this)}
                     onCancel={this.onCancel.bind(this)}
                 />
+            );
+        case 'uploadselfie':
+            return (
+                <UploadSelfie/>
             );
         default:
             return (
@@ -137,14 +139,8 @@ class angel extends Component {
                               selectedTab: 'post',
                           });
                     }}>
-                       <Navigator
-                           configureScene={this.configureScene}
-                           initialRoute={{ name: 'tasklist', index: 0 }}
-                           ref={((nav) => {
-                               this.nav = nav;
-                           })}
-                           renderScene={this.renderScene.bind(this)}
-                       />
+                    <UploadSelfie>
+                    </UploadSelfie>   
                   </Icon.TabBarItemIOS>
                   <Icon.TabBarItemIOS
                     title='Thoughts'
@@ -158,7 +154,7 @@ class angel extends Component {
                     }}>
                        <Navigator
                            configureScene={this.configureScene}
-                           initialRoute={{ name: 'tasklist', index: 0 }}
+                           initialRoute={{ name: 'uploadselfie', index: 0 }}
                            ref={((nav) => {
                                this.nav = nav;
                            })}
